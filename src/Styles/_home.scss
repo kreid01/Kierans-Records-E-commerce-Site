@@ -1,0 +1,141 @@
+@import 'mixins';   
+.new--records .page--header {
+    &:before {
+        width:2.9em;
+    }
+}
+.new--record--container {
+    box-sizing: border-box;
+    font-size:1em;
+    padding-left:1em;
+    margin-bottom: -1em;;
+    & img {
+        border-radius: 5px;
+        min-width: 100%;;
+        max-width: 100%;
+        max-height:70%;
+        min-height: 50%;
+    }
+
+}
+.new--record--info, .new--record--name ,.new--record--artist, .new--record--buying {
+    margin:0.2em 0;
+}
+.new--record--buying {
+    display: flex;
+    justify-content: space-between;
+    & button {
+        @include button;
+        font-size:1em;
+    }
+}
+.featured--record--info {
+    padding-left: 0;
+}
+.featured--records .page--header {
+    padding-top: 1.5em;
+    &:before {
+        top: 2.7em;
+        left: 4em;
+        width: 5em;
+    }
+}
+.featured--record--container, .similar--records, .wishlist--items {
+    display: flex;
+    width:100%;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    font-size: 1em;
+    padding:0.5em;
+    padding-right:0;
+    & .record {
+        font-size:0.8em;
+        margin-right:0;
+        min-width: 40vw;
+        max-width: 40vw;
+        & button {
+            @include button;
+            scale: 0.8;
+            margin: 0 0.1em;
+            font-sizE: 1.1em;
+        }
+        & img {
+            max-width: 40vw;
+            min-width: 40vw;
+            min-height: 40vw;
+            max-height: 40vw;;
+        }
+    }      
+}
+@media(min-width: 768px) {
+    .new--record--container {
+        display: flex;
+        font-size: 0.7em;
+        & .record  {
+            min-width:15vw;
+            min-width:20vw;;  
+            max-height: 30vw;          
+            & img {
+            max-width:20vw;
+            min-width:20vw;
+            max-height:20vw;
+            min-height:20vw;
+            }
+        }
+    }
+    .featured--record--container, .similar--records, .wishlist--items {
+        & .record {
+            padding-bottom: 5em;
+             & button {
+               font-sizE: 0.75em;
+            }
+            font-size:0.75em;
+            margin-right:0;
+            min-width: 25vw;
+            max-width: 25vw;
+            min-height:25vw;
+            & img {
+                max-width: 25vw;
+                min-width: 25vw;
+                min-height: 25vw;
+                max-height: 25vw;;
+            }
+        }      
+    }
+} 
+@media(min-width: 1200px) {
+    .new--record--container {
+        font-size: 0.7em;
+        & .record  {
+            min-width:25vw;
+            min-width:25vw;
+            min-height:45vw;
+            & img {
+            max-width:26vw;
+            min-width:26vw;
+            max-height:26vw;
+            min-height:26vw;
+            }
+        }
+    }
+    .featured--record--container, .similar--records, .wishlist--items {
+        & .record {
+             & button {
+               font-sizE: 0.7em;
+            }
+            font-size:0.75em;
+            margin-right:0;
+            min-width: 18vw;
+            max-width: 18vw;
+            min-height:30vw;
+            max-height: 30vw;
+            & img {
+                max-width: 18vw;
+                min-width: 18vw;
+                min-height: 18vw;
+                max-height: 18vw;;
+            }
+        }      
+    }
+}         
+

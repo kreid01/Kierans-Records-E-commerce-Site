@@ -1,0 +1,131 @@
+@import "./mixins";
+
+.current--record {
+    display: flex;
+    & img {
+        max-width: 40vw;
+        min-width: 40vw;
+        min-height: 40vw;
+        margin-left: 1em;
+    }
+}
+.current--record--info {
+    margin-right:0;
+    margin-left: 1em;
+    position: relative;
+    width: 50%;
+}
+.current--record--header {
+    & .page--header {
+        &:before {
+            width:70vw;
+        }
+    }
+}
+.current--record--artist {
+    display:flex;
+    justify-content: space-between;
+    margin: 0;
+
+}
+.quantity--remaining {
+    font-size: 0.7em;
+}
+.current--record--buying, .similar--records .record {
+    margin-right:0;
+    & button {
+        @include button;
+        scale: 0.7;
+        min-width:7em;
+    }
+}
+.current--record--buying {
+    width: 100%;
+    position: absolute;
+    bottom:1px;
+    left: -10px;
+    & button {
+        @include button;
+        font-size:0.8em;
+        scale: 0.8;
+        min-width:7em;
+        margin: 1px;
+        margin-right: -10px;
+    }
+}
+.similar--record--container {
+    & .page--header {
+        margin:0;
+        &:before {
+            width: 4.1em;
+        }
+    }
+    margin-top:0;
+    font-size: 0.75em;
+}
+#similar-record--info--container {
+    & button {
+        font-sizE: 1.2em;
+    }
+}
+@media (min-width: 768px) {
+    .current--record {
+        font-sizE: 0.8em;
+        img {
+            max-height: 40vw;
+            max-width: 40vw;
+        }
+        & button {
+            scale: 0.5;
+            min-width:6em;
+            margin: 0
+        }
+    }
+}
+@media (max-width: 900px) {
+    .current--record  {
+        min-width:50vw;
+        img {
+            max-height: 35vw;
+            max-width: 35vw;
+        }
+    }
+}
+@media (min-width: 1100px) {
+    .current--record {
+        font-sizE: 1em;
+    }
+    .similar-records--title {
+        font-size: 1em;
+    }
+
+    .current--record--buying {
+        & button {
+            margin: auto 0.3em;
+            scale: 0.9;
+            height:2em;
+            min-width: 7em;
+            padding:0;
+        }
+    }
+    .current--record--title {
+        font-size: 1.3em;
+    }
+    #similar-record--info--container {
+        & button {
+            font-sizE: 0.9em;
+            scale: 0.9;
+        }
+    }
+}
+@media (min-width: 1300px) {
+    .current--record {
+        font-size: 1em;
+        & img {
+            max-height: 30vw;
+            min-height: 30vw;
+            min-width: 30vw;
+        }
+    }
+
+}
