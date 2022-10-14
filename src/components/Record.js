@@ -41,7 +41,7 @@ export default function Record(props) {
                     <p className='record--info'>{record.releaseYear}  • {record.songCount} songs</p>
                     <div className='record--buying'>
                         <p className='record--price'>£{record.price}</p>
-                        <button style={props.inputThemeStyles} onClick={() => props.addToCart(record, id)}>Add to Cart</button>
+                        <button  id='similar--record--cart' style={props.inputThemeStyles} onClick={() => props.addToCart(record, id)}>Add to Cart</button>
                     </div>
                 </div>
             </div>
@@ -65,10 +65,10 @@ export default function Record(props) {
                     <div className='current--record--buying'>
                         <button 
                         style={props.inputThemeStyles}
-                        onClick={() => props.addToWishlist(props.recordData[id], id)}className='wishlist--add'>+ Wishlist</button>
+                        onClick={() => props.addToWishlist(props.recordData[id], id)}className='wishlist--add'>+Wishlist</button>
                         <button 
                         style={props.inputThemeStyles}
-                        onClick={() => props.addToCollection(props.recordData[id], id)}className='wishlist--add'>+ Collection</button>
+                        onClick={() => props.addToCollection(props.recordData[id], id)}className='wishlist--add'>+Collection</button>
                         <button 
                         style={props.inputThemeStyles}
                         onClick={() => props.addToCart(props.recordData[id], id)}>Add to Cart</button>

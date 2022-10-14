@@ -223,7 +223,10 @@ export default function NewRecord(props) {
                     </select>
                     </div>
                     <button 
-                     style={props.inputThemeStyles}type='submit' value="Submit" onClick={props.postData}>Submit Record</button> 
+                     style={props.inputThemeStyles}
+                     className='submit--button'
+                     type='submit'
+                      value="Submit" onClick={props.postData}>Submit Record</button> 
                     <div className='data--val--msg' data-valmsg-summary="true">
                         <ul></ul>
                     </div>
@@ -239,13 +242,13 @@ export default function NewRecord(props) {
                     alt=''
                     />
                     <div className='current--record--info preview'>
-                        <h3 className='preview--record--name'>{props.newRecord.name}</h3>
+                       <h3 className='preview--record--name'>{props.newRecord.name}</h3>
                         <h2 className='preview--record--artist'>{props.newRecord.artist}</h2>
-                        <p className='preview--record--info'>{props.newRecord.releaseYear}  • {props.newRecord.songCount} songs </p>
+                        {props.newRecord.songCount > 1 && props.newRecord.releaseYear > 1 && <p className='preview--record--info'>{props.newRecord.releaseYear}  •  {props.newRecord.songCount} songs </p>}
                         <div className='preview--record-genres'>
                             {props.newRecord.genres.join(', ')}
                         </div>
-                            <p className='preview--record--price'>£{props.newRecord.price}</p>
+                        {props.newRecord.price > 1 && <p className='preview--record--price'>£{props.newRecord.price}</p>}
                     </div>
                 </div>
             </div>

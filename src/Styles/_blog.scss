@@ -95,3 +95,11 @@
         }
     }
 }
+@media (min-width:1500px) {
+    .post--container {
+        font-size: 1em;
+        & img {
+            width: 15%;
+        }
+    }
+}
