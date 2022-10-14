@@ -1,0 +1,247 @@
+/* Cart */
+@import 'mixins';
+.cart--items {
+    margin-left: 0.5em;
+    box-sizing: border-box;
+    max-height: 30vh;
+    min-height: 20vh;
+    overflow-y: scroll;
+    width: 98%;
+    padding-bottom:1.5em;
+    margin-bottom: 1em;
+}
+.wishlist--container {
+    min-height:45vh;
+}
+.cart--record {
+    box-sizing: border-box;
+    displaY:flex;
+    width:95%;
+    font-size: 1em;
+    & button {
+        scale: 0.8;
+    }
+    height: 70%;
+    background-color: rgba(175, 175, 175, 0.2);
+    padding:1em;
+    margin:1em 0em 1em .7em;
+    border-radius: 20px;
+}
+.wishlist--container .page--header{
+    &:before {
+        left: 2em;
+        width: 80px;
+      }
+}
+.wishlist--items .record {
+    margin-bottom: 1em;
+}
+.cart--header .page--header {
+    &:before {
+        left: 1.3em;
+        width: 45px;
+      }
+}
+.cart--record--img {
+   max-width: 20vw;
+   height:100%;
+   border-radius: 5px;
+}
+.cart--item--details {
+    display: flex;
+    width:90%;
+    flex-direction: column;;
+    font-family: bold;
+    font-size:1.5em;
+    height: 70%;
+}
+.cart--record--name, .cart--record--artist {
+    padding:0 0 0 15px;
+    margin:0;
+}
+.cart--record--name {
+    font-size:0.8em;
+    max-width: 90%;
+}
+.cart--record--artist {
+    font-weight: 300;
+    font-size: 0.6em;
+}
+.cart--total--price {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+}
+.cart--record--buying button {
+    height:50%;
+    align-self: center;
+    background-color: rgb(66, 66, 66);
+    border-radius: 5px;
+    border:none;
+    color:white;
+    padding:0.5em;
+    margin-left: auto;
+    cursor:pointer;
+    &:hover {
+        background-color: rgb(55,55,55);;
+    }
+}
+.cart--container {
+    box-sizing: border-box;
+    display:flex;
+    flex-direction: column;
+    margin-right: 0;
+}
+.cart--summary {
+    box-sizing: border-box;
+    font-size: 0.8em;
+    width:100%;
+    min-height: 20vh;
+    border-left: 1px solid lightgrey;
+    border-right: 1px solid lightgrey;
+    border-radius: 20px;
+    padding:1em;
+    margin-lefT: 0.5em;
+    display: flex;
+    flex-direction: column;
+}
+.checkout--button {
+    @include button;
+    height: 1.6em;
+    font-size:1.2em;
+    padding: 0 1em;
+    align-self: flex-end;
+}
+.cart-record--total {
+    displaY:flex;
+    justify-content: space-between;
+    padding-right: 1em;
+}
+.cart--quantity {
+    padding:0 1em;
+}
+.cart--record--buying {
+    display:flex;
+    width:100%;
+    justify-content: space-evenly;
+    margin-top: auto;
+    padding-left:1em;
+    margin-bottom: 1em;
+    font-size:0.9em;
+}
+.cart {
+    height: 20px;
+    background-color: rgba(66, 66, 66, 0.3);
+    padding: 0.5em;
+    border-radius: 5px;
+}
+.wishlist--add {
+    width: 7em;
+}
+.paypal--container {
+    height: 100vh;
+    width: 100vw;
+    & .paypal--button {
+    margin: 0 auto;
+    }
+}
+.cart--page {
+    height: 100%;
+}
+@media (min-width: 600px) {
+    .cart--record--buying button {
+        font-size: 0.8em;
+        scale: 1.1;
+        margin: 0 0.8em;
+     }
+}
+@media (min-width: 768px) {
+    .cart--container {
+        flex-direction: row;
+        width: 120%;
+        margin-left:-2.9em;
+    }
+    .cart--items{
+        padding-left: 2em;
+        & .cart--record {
+            scale: 1.2;
+            width: 85%;
+            margin-bottom:2.5em;
+            margin-top:1.2em;
+        }
+    }
+    .cart--summary {
+        width: 30%;
+        font-size: 0.5em;
+        padding-left:2em;
+        margin-left: 2em;
+        & button {
+            scale: 1.2;
+        }
+    }
+    .cart--record--img {
+        min-width:100%;
+        min-height: 100%;;
+     }
+     .cart--record--buying button {
+        font-size: 0.65em;
+        scale: 1;
+        margin: 0 0.5em;
+     }
+     .cart--record--buying {
+        font-size: 0.5em;
+        padding-lefT:0.5em;
+     }
+     .cart--record, .cart--items {
+        max-height: 40vh;
+        width:85%;
+     }
+     .cart--record {
+        margin: 0.5em;
+        padding: 0.5em;
+     }
+     .cart--record--name {
+        font-size: 0.7em;
+     }
+     .wishlist--container .page--header{
+        &:before {
+            left: 2em;
+            width: 160px;
+          }
+    }
+    .cart--header .page--header {
+        &:before {
+            left: 1.3em;
+            width: 90px;
+          }
+    }
+}
+@media (min-width: 1000px) {
+    .cart--container {
+        margin-left: -5em;
+    }
+    .cart--record--buying button {
+        font-sizE:0.5em;
+        margin: 0 0.8em;
+     }
+     .cart--record--buying {
+        font-size: 0.7em;
+        padding-lefT:0.5em;
+     }
+     .cart--record--name {
+        font-size: 1em;
+     }
+     .cart--record, .cart--items {
+        max-height:40vh;
+        width:80%;
+     }
+     .cart--items {
+        padding-left:4em;
+     }
+}
+@media (min-width: 1300px) {
+        .cart--record--buying button {
+            font-sizE:0.7em;
+            margin: 0 0.8em;
+         }
+}
