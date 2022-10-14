@@ -5,10 +5,9 @@
     }
 }
 .new--record--container {
-    box-sizing: border-box;
     font-size:1em;
-    padding-left:1em;
     margin-bottom: -1em;;
+    padding-bottom: 5em;
     & img {
         border-radius: 5px;
         min-width: 100%;;
@@ -41,23 +40,23 @@
     }
 }
 .featured--record--container, .similar--records, .wishlist--items {
+    box-shadow: 2px 2px 2px 2px rgb(84, 84, 84);;
+    border-radius: 10px;;
     display: flex;
     width:100%;
     flex-wrap: nowrap;
     overflow-x: scroll;
-    font-size: 1em;
+    font-size: 1.1em;
     padding:0.5em;
-    padding-right:0;
+    padding-bottom:0;
     & .record {
-        font-size:0.8em;
+        padding-left:0.5em;
+        font-size:0.75em;
         margin-right:0;
         min-width: 40vw;
         max-width: 40vw;
         & button {
             @include button;
-            scale: 0.8;
-            margin: 0 0.1em;
-            font-sizE: 1.1em;
         }
         & img {
             max-width: 40vw;
@@ -69,29 +68,33 @@
 }
 @media(min-width: 768px) {
     .new--record--container {
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
         font-size: 0.7em;
         & .record  {
-            min-width:15vw;
-            min-width:20vw;;  
+            padding-left: 0.5em;;
+            min-height:30vw;
+            min-width:20vw;; 
+            max-width: 22vw;; 
             max-height: 30vw;          
             & img {
-            max-width:20vw;
-            min-width:20vw;
-            max-height:20vw;
-            min-height:20vw;
+            max-width:22vw;
+            min-width:22vw;
+            max-height:22vw;
+            min-height:22vw;
+            }
+            & button {
+                font-size:0.6em;
             }
         }
     }
     .featured--record--container, .similar--records, .wishlist--items {
         & .record {
+            height:50vh;
             padding-bottom: 5em;
-             & button {
-               font-sizE: 0.75em;
-            }
-            font-size:0.75em;
+            font-size:0.5em;
             margin-right:0;
-            min-width: 25vw;
+            min-width: 27vw;
             max-width: 25vw;
             min-height:25vw;
             & img {
@@ -106,23 +109,13 @@
 @media(min-width: 1200px) {
     .new--record--container {
         font-size: 0.7em;
-        & .record  {
-            min-width:25vw;
-            min-width:25vw;
-            min-height:45vw;
-            & img {
-            max-width:26vw;
-            min-width:26vw;
-            max-height:26vw;
-            min-height:26vw;
-            }
-        }
     }
     .featured--record--container, .similar--records, .wishlist--items {
         & .record {
+            .record--buying {
              & button {
-               font-sizE: 0.7em;
-            }
+               font-sizE: 1em;
+            }}
             font-size:0.75em;
             margin-right:0;
             min-width: 18vw;

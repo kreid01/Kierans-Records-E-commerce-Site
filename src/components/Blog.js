@@ -7,7 +7,7 @@ const blog = [{
     imageUrl: 'https://e.snmc.io/i/600/s/8f44d923ceeda12d90043f0255070130/10300453/bladee-spiderr-Cover-Art.jpg',
     album: 'Spiderr by Bladee',
     date: '13/10/22',
-    content: 'njodgniouer sniutdno  sbmciutomrhsbi votcnmfujsbonm turiosc,hnvui toenvuisntmc irohvsgmvbnt o,d,svb nmctor lbw vnmg,v,ctros nmgvnlthjkdjs'
+    content: 'Bladees second studio album of 2022 brings a new musical aestetic fomr his his previous his release. Spider incorporates current glitch pop, drill and rage musical trends. The album with its 13 tracks aqnd just over 31 minutes runtime, keeps the listener constantly interested. With the outstadning production from whiteamor and Bladees signature autotune, the product created is very enjoyable and worth the listen.'
 }]
 const blogData = blog.map(post => {
     return (

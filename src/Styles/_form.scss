@@ -17,10 +17,15 @@ form input, form button, select, input, .search--button {
 .genre--selectors {
    display:flex;
    justify-content: space-evenly;
+   max-width: 100%;
    & select {
-    min-width:32.3%;
-    margin-right: 1em
+    min-width:32.5%;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
    }
+}
+.submit--button {
+    width: 101%;
 }
 .data--val--msg {
     max-height: 5em;;

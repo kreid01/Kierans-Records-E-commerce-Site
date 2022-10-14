@@ -19,11 +19,13 @@
     }
 }
 .record {
-    margin: 1em;
+    margin: 0.5em;
     @include record;
     padding-bottom:-1em;
-    width:60%;
+    width:85%;
     height: 90%;
+    margin-left: 1.5em;
+    padding-left:2.2em;
     & img {
         margin-bottom: 1em;
         border-radius: 5px;
@@ -38,9 +40,21 @@
     justify-content:space-between;
     width: 30%;
     & button {
-        @include button;
-        padding: 0.3em 0.6em;;
-        margin:0 0.1em;
+        height:50%;
+    align-self: center;
+    background-color: rgb(66, 66, 66);
+    border-radius: 5px;
+    border:none;
+    color:white;
+    font-size:0.6em;
+    width: 1.5em;
+    height:2em;
+    font-family: 'Inter';
+    cursor:pointer;
+    font-weight: bold;
+    &:hover {
+        filter:brightness(80%);
+    }
     }
     margin: 2em auto;
     height: 2.5em;
@@ -54,12 +68,14 @@
 .record--info {
     font-size: 0.8em;
 }
-.record--buying, .current--record--buying, .featured--record--container .record .record--buying{
+.record--buying, .current--record--buying, .featured--record--container .record {
     margin-top: auto;
     display:flex;
     justify-content: space-between;
     & button {
         margin-left: auto;
+        scale: 0.9;
+        font-sizE:0.55em;
     }
 }
 .wishlist--add{
@@ -91,18 +107,21 @@
 @media (min-width: 768px) {
     .record--container, .record--collection--container {
         grid-template-columns:  repeat(3, 1fr);
+        width: 100%;
         font-size: 0.7em;
         & .record {
-            padding-left:3.5em;
             padding-bottom:-1em;
-            min-width: 20vw;
+            margin: 0;
+            padding:1em;
+            min-width: 22vw;
+            max-width: 20vw;;
             min-height: 30vh;
             & img {
                 border-radius: 5px;
-                min-width: 20vw;;
-                max-width: 20vw;
-                max-height:20vw;
-                min-height: 20vw;
+                min-width: 22vw;;
+                max-width: 22vw;
+                max-height:22vw;
+                min-height: 22vw;
              }
         }
     }
@@ -115,9 +134,9 @@
         grid-template-columns:  repeat(4, 1fr);
         & .record {
             padding-bottom:-1em;
-            min-width: 15vw;
+            min-width: 16vw;
+            max-width: 17vw;
             & img {
-                border-radius: 5px;
                 min-width: 17vw;;
                 max-width: 17vw;
                 max-height:17vw;
@@ -129,16 +148,17 @@
 @media (min-width: 1500px) {
     .record--container {
         grid-template-columns:  repeat(5, 1fr);
-    & .record {
-        @include record;
-        min-width: 10vw;
-        & img {
-            border-radius: 5px;
-            min-width: 14vw;;
-            max-width: 14vw;
-            max-height:14vw;
-            min-height: 14vw;
-         }
-    }
+        & .record {
+            min-width: 13vw;
+            max-width: 13vw;
+            & img {
+                min-width: 12vw;;
+                max-width: 12vw;
+                max-height:12vw;
+                min-height: 12vw;
+             }
+        }
     }
 }
+
+

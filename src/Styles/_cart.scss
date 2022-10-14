@@ -107,8 +107,9 @@
 }
 .checkout--button {
     @include button;
-    height: 1.5em;
+    height: 1.6em;
     font-size:1.1em;
+    padding: 0 1em;
     align-self: flex-end;
 }
 .cart-record--total {
@@ -170,12 +171,12 @@
         }
     }
     .cart--summary {
-        width: 30%;
+        width: 40%;
         font-size: 0.5em;
         padding-left:2em;
         margin-left: 2em;
         & button {
-            scale: 1.2;
+            scale: 1.1;
         }
     }
     .cart--record--img {

@@ -60,7 +60,6 @@ const featuredRecordMapped = featuredRecords.map(record => {
             <p className='record--info'>{record.releaseYear}  • {record.songCount} songs</p>
             <div className='record--buying'>
                 <p className='record--price'>£{record.price}</p>
-                <button style={props.inputThemeStyles} onClick={() => props.addToCart(record, id)}>Add to Cart</button>
             </div>
         </div>
         )

@@ -321,6 +321,8 @@ function resetFilters() {
       </ul>                                              
     </nav>
   </header>
+  <div className='page--container' style={themeStyles}>
+  <div className='page'>
   <Routes>
     <Route exact path='/' element={<Home
     themeStyles={themeStyles}
@@ -441,6 +443,8 @@ function resetFilters() {
       </Route>
       <Route path='*' element={<NotFoundPage />}></Route>
   </Routes>
+  </div>
+  </div>
   <Footer 
   inputThemeStyles={inputThemeStyles}
   themeStyles={themeStyles} />
