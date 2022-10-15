@@ -1,18 +1,22 @@
 .blog--page {
     margin:0;
     height: 75vh;
+    padding-bottom: 1em;
     .page--header {
-        margin:0;
         padding-bottom :0.5em;
+        margin-left: 1.75em;
+        &:before {
+            width: 1.1em;
+            left: 1.5em;
+        }
     }
 }
 .post--container {
-    padding: 0;
-    margin: 0;
     displaY:flex;
     flex-direction: column;
-    width: 100vw;
-    margin-left: 4.5em;
+    width: 100%;
+    margin-left: 15%;
+    font-size: 1.4em;
     & h1 {
         margin: 0;
         margin-bottom: 0.5em;
@@ -29,6 +33,7 @@
         margin-bottom: 0.5em;
         & .post--date--span {
             opacity: 70%;
+            margin-left:-10em;
          }
          & p {
             margin-top: 0.5em;
@@ -36,13 +41,13 @@
     }
     & img {
         margin-bottom: 0.5em;
-        max-width: 70%;
+        max-width: 65%;
         order: 2;
     }
     & p {
         max-width: 70%;
-        font-size: 0.6em;
-        margin: 0;
+        font-size: 0.5em;
+        margin-bottom: 1em;;
         order: 4;
     }
     & .post--details--container {
@@ -57,19 +62,50 @@
     }
     
 }
-@media (min-width:650px) {
+@media (min-width: 600px) {
+    .blog--page {
+        & .page--header {
+        margin-left:1.75em;
+        padding-bottom :0.5em;
+        }
+    }
     .post--container {
-        margin-left :1em;
-        font-size: 0.8em;;
+        font-size:1.5em;
+        margin-left: 10%;
         & img {
             width: 30%;
+            height: 30%;
+            order: 2;
+        }
+        & .post--details--container {
+            margin-left:0;
+            flex-direction: row;
+        }
+        .post--album--info {
+            margin:0;
+            margin-left: 0.5em;
+        }
+    }
+
+}
+@media (min-width:768px) {
+    .blog--page {
+        & .page--header {
+        margin-left:0;
+        padding-bottom :0.5em;
+        }
+    }
+    .post--container {
+        width: 110%;
+        margin-left: 1em;
+        font-size: 0.9em;;
+        & img {
+            width: 30%;
+            height: 30%;
             order: 2;
         }
         & h1 {
             width: 100%;
-        }
-        & .post--details--container {
-            flex-direction: row;
         }
         .post--album--info {
             margin:0;
@@ -86,6 +122,11 @@
     }
 }
 @media (min-width:1200px) {
+    .blog--page {
+        & .page--header {
+        padding-bottom: 0.5em;
+        }
+    }
     .post--container {
         margin-left :1em;
         font-size: 0.8em;;
