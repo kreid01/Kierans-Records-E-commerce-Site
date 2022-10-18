@@ -19,8 +19,8 @@ const featuredRecords = props.recordData.filter(record =>
         if(i < 3) {
         const id = props.recordData.indexOf(record)
         return (
-            <div className='new--record'>
-                <div className='record' id={id} key={id}>
+            <div className='new--record'  key={id}>
+                <div className='record' id={id}>
                     <Link to={`/records/${id}`}>
                     <img className='new--record--image'                        
                     src={record.imageUrl}

@@ -10,7 +10,7 @@ export default function RecordsList(props) {
  //   const number = searchParams.get('n')
             const pageNumberData = emptyArr.map((item, i) =>  {
                 return (
-                    <div className='page--change--item'>
+                    <div key={i} className='page--change--item'>
                         <button 
                         name={i+1}
                         className='page--change--button' 

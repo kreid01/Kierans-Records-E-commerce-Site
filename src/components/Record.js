@@ -6,11 +6,10 @@ export default function Record(props) {
    const recordData = props.recordData
    if (recordData.length > 1) {
    
-   
-   const similarRecordsUnique =  recordData.filter((rec => rec.name!== recordData[id].name))
+    const similarRecordsUnique  = recordData
 
-    const similarRecords = similarRecordsUnique.reduce((acc, record, i) => {   
-        if(record !== props.recordData[id]) {
+      const similarRecords = similarRecordsUnique.reduce((acc, record, i) => {   
+        if(record !== props.recordData[id] && record.name !== props.recordData[id].name ) {
         if(record.genres.includes(
             recordData[id].genres[0] || 
             recordData[id].genres[1] || 
@@ -33,7 +32,6 @@ export default function Record(props) {
                 <img className='record--image featured--record'                        
                 src={record.imageUrl}
                 alt=''
-                recordData={props.recordData}
                 />
                 </Link>
                 <div>

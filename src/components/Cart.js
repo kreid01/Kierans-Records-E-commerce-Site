@@ -93,6 +93,7 @@ export default function Cart(props) {
     <div className='cart--page' style={props.themeStyles} >
         { (props.checkout) ? (
         <PayPal 
+        emptyCartOnSuccessfulPayment={props.emptyCartOnSuccessfulPayment}
         cartDataFromAPI={props.cartDataFromAPI}
         recordData={props.recordData}
         goToCheckout={props.goToCheckout}
@@ -104,17 +105,17 @@ export default function Cart(props) {
                  <h1 style={props.themeStyles} className='page--header'>Cart</h1>
                </div>  
             <div  style={props.themeStyles}  className='cart--page--container'>
-                <div className='cart--items' >
+                <div className='cart--items--container'>
                     {cartData}
                 </div>
             <div className='cart--summary'>
                      {cartTitleSummary}
                     <div className='cart--total--price'>
                         Total: {props.totalPrice.toFixed(2)}    
-                        <button 
+                       {props.cart.length > 0 && <button 
                         style={props.inputThemeStyles}
                         onClick={props.goToCheckout}
-                       className='checkout--button'>Checkout</button>
+                       className='checkout--button'>Checkout</button>}
                     </div>
                 </div>
             </div>

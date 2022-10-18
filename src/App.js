@@ -1,3 +1,5 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import './styles.css';
 import { Route, Routes, NavLink} from 'react-router-dom'
@@ -15,27 +17,16 @@ import React from 'react'
 import Collection from './components/Collection';
 import { useTheme, useThemeUpdate} from './components/ThemeContext'
 import { nanoid } from 'nanoid'
+import LoginButton from './components/LoginButton';
+import LogoutButton from './components/LogoutButton';
+import Profile from './components/Profile';
+import ProfilePage from './components/ProfilePage';
+import { useAuth0 } from '@auth0/auth0-react'
 
 function App() {
 
-function postData() {
-fetch('https://localhost:7143/records', {
-method: 'POST', 
-headers: { 'Content-Type': 'application/json' },  
-body:JSON.stringify(newRecord)})
-.then(res => 201)
-.then(console.log('posted successfully'))
-.then(setNewRecord({
-  name:'',
-  artist:'',
-  releaseYear: 0,
-  imageUrl:'',
-  duration: '',
-  songCount: 0,
-  price: 0,
-  genres: [],
-}))
-}
+const {isAuthenticated} = useAuth0()
+
 const cartId = React.useMemo(() => nanoid(), []);
 const darkTheme = useTheme()
 const toggleTheme = useThemeUpdate()
@@ -63,7 +54,7 @@ const [recordData, setRecordData] = React.useState([])
 const [recordDataForPaging, setRecordDataForPaging] = React.useState([])
 const [cart, setCart] = React.useState([])
 const [collection, setCollection] = React.useState(() => {
-  const saved = localStorage.getItem("userWishlist");
+  const saved = localStorage.getItem("userCollection");
   const initialValue = JSON.parse(saved);
   return initialValue || "";
 })
@@ -89,7 +80,7 @@ React.useEffect(() => {
 }, [wishlist]);
 
 React.useEffect(() => {
-  localStorage.setItem('userWishlist', JSON.stringify(collection));
+  localStorage.setItem('userCollection', JSON.stringify(collection));
 }, [collection]);
 
 React.useEffect(() => {
@@ -106,8 +97,29 @@ React.useEffect(() =>{
   fetch(`https://localhost:7143/cart/${cartId}`)
     .then(res => res.json())
     .then(data => setCartDataFromAPI(data))
-    console.log(cartDataFromAPI)}, [cart])
+    .catch(err => console.error(err)) 
+}, [cart])  
   
+function postData() {
+  fetch('https://localhost:7143/records', {
+  method: 'POST', 
+  headers: { 'Content-Type': 'application/json' },  
+  body:JSON.stringify(newRecord)})
+  .then(res => 201)
+  .then(console.log('posted successfully'))
+  .then(setNewRecord({
+    name:'',
+    artist:'',
+    releaseYear: 0,
+    imageUrl:'',
+    duration: '',
+    songCount: 0,
+    price: 0,
+    genres: [],
+  }))
+  }
+  
+
 function goToCheckout() {
   setCheckout(prevState => !prevState)
 }
@@ -151,11 +163,10 @@ function handleChange(e) {
   newArr[id].quantity = newArr[id].quantity - 1
   setRecordData(newArr)
   if(cart.length === 0) {
+  const cartContents = {name: record.name, id: record._id, price: `${record.price}`}
   const jsonDataForPosting  = {
-    "cartContents": [
-      `${record.name}`
-    ],
-    "_id": `${cartId}`
+    "cartContents" : [cartContents],
+    "Id": `${cartId}`
     }
     fetch('https://localhost:7143/cart', {
     method: 'POST', 
@@ -165,32 +176,36 @@ function handleChange(e) {
     }
  } 
 
+ function emptyCartOnSuccessfulPayment() {
+  setCart([])
+ }
+
  React.useEffect(() => { 
-  const recordCartNames = []
-  if(cart.length > 0) {
+  const recordCartContent = []
+  if(cartDataFromAPI.cartContents) {
+
     cart.map(rec => {
         for(let i = 0; i < rec.quantityInCart; i++) {
-        recordCartNames.push(rec.name)
+       recordCartContent.push({name: rec.name, id: rec._id, price: `${rec.price}`})
         }
     })
       const jsonDataForPosting  = {
         "cartContents": 
-         recordCartNames
+         recordCartContent
         ,
-        "_id": `${cartId}`
+        "Id": `${cartId}`
         }
       fetch('https://localhost:7143/cart', {
         method: 'PUT', 
         headers: { 'Content-Type': 'application/json' },  
         body:JSON.stringify(jsonDataForPosting)})
-        console.log(jsonDataForPosting)
     }}, [cart])
 
-
+    React.useEffect(() => {
     if (cart.length === 0) {
-      fetch(`https://localhost:7143/cart/${cartId}`, {
+    fetch(`https://localhost:7143/cart?id=${cartId}`, {
     method: 'DELETE', 
-    headers: { 'Content-Type': 'application/json' }})}
+    headers: { 'Content-Type': 'application/json' }})}},[cart])
 
 
   function deleteFromCart(id, i) {
@@ -200,7 +215,6 @@ function handleChange(e) {
     const newArr = [...cart]
     newArr.splice(id, 1)
     setCart(newArr)
-    setCartDataFromAPI(newArr)
     const recordToRemove = setRecordData[id].name     
     const newCartDataArr = cartDataFromAPI
     newArr.cartContents.remove(recordToRemove)
@@ -214,7 +228,7 @@ function handleChange(e) {
       "cartContents": 
        recordCartNames
       ,
-      "_id": `${cartId}`
+      "Id": `${cartId}`
       }
     fetch('https://localhost:7143/cart', {
       method: 'PUT', 
@@ -223,7 +237,6 @@ function handleChange(e) {
 }
 
 function increment(i, id) {
-
   if(cart[i].quantityInCart < cart[i].quantity) {
   const newArr = [...cart]
   newArr[i].quantityInCart = newArr[i].quantityInCart + 1
@@ -294,7 +307,7 @@ function deleteFromWishlist(id) {
 function addToCollection(record, id) {
   let isRecordPresent = false
   // eslint-disable-next-line array-callback-return
-  collection.map(rec => {
+    collection.map(rec => {
     if(rec.name === record.name) {
       isRecordPresent = true
     }
@@ -342,6 +355,7 @@ function resetFilters() {
   setGenreFilter('')
   setSortBy('')
 }
+
   return (
   <>
   <header className='nav--bar'>
@@ -378,14 +392,17 @@ function resetFilters() {
             }} end to='/collection'>Collection
         </NavLink>
         </li>
+        {isAuthenticated && <Profile /> }
         <li className='nav--buttons'>
           <NavLink
-          onClick={(checkout)? goToCheckout : ''}
-          className='cart--container'
-          end to='/cart'><img className='cart' src={cartImage} alt='cart'/>
-          <div className='counter'>{totalQuantity}</div>
-        </NavLink>
-        <button onClick={toggleTheme} style={inputThemeStyles} className={darkThemeToggle}></button>
+            onClick={(checkout)? goToCheckout : ''}
+            className='cart--container'
+            end to='/cart'><img className='cart' src={cartImage} alt='cart'/>
+            <div className='counter'>{totalQuantity}</div>
+          </NavLink>
+           <LoginButton inputThemeStyles={inputThemeStyles}/>
+           <LogoutButton inputThemeStyles={inputThemeStyles} />
+           <button className={darkThemeToggle} onClick={toggleTheme} style={inputThemeStyles}></button>
         </li>
       </ul>                                              
     </nav>
@@ -487,6 +504,7 @@ function resetFilters() {
       />}></Route>
       <Route path='/cart' 
       element={<Cart
+      emptyCartOnSuccessfulPayment={emptyCartOnSuccessfulPayment}
       cartDataFromAPI={cartDataFromAPI}
       themeStyles={themeStyles}
       inputThemeStyles={inputThemeStyles}
@@ -503,6 +521,7 @@ function resetFilters() {
       totalPrice={totalPrice}
       cart={cart}/>}>
       </Route>
+      <Route path='/profilepage' element={<ProfilePage />}></Route>
       <Route path='*' element={<NotFoundPage />}></Route>
   </Routes>
   </div>

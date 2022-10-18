@@ -1,18 +1,8 @@
 /* Cart */
 .cart--page {
+  height: 100%;
   box-sizing: content-box;
   width: 90%;
-}
-
-.cart--items {
-  margin-left: 0.5em;
-  max-height: 25vh;
-  min-height: 25vh;
-  overflow-y: scroll;
-  width: 100%;
-  padding-bottom: 1.5em;
-  margin-bottom: 1em;
-  overflow-x: hidden;
 }
 
 .wishlist--container {
@@ -20,19 +10,42 @@
 }
 
 .cart--record {
+  margin: 0.75em 1em;
   displaY: flex;
-  width: 89%;
+  width: 95%;
   font-size: 1em;
   height: 70%;
   background-color: rgba(175, 175, 175, 0.2);
   padding: 1em;
-  margin: 1em 0em 1em 0.7em;
   border-radius: 5px;
 }
 .cart--record img {
-  max-width: 20vw;
+  max-width: 25vw;
+  max-height: 25vw;
   height: 100%;
   border-radius: 3px;
+}
+.cart--record .cart--record--buying {
+  font-size: 1.2em;
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  margin-top: auto;
+  padding-left: 0.5em;
+}
+.cart--record .cart--record--buying button {
+  font-sizE: 0.5em;
+  font-family: "Inter";
+  align-self: center;
+  border: 2px solid rgba(14, 14, 40, 0.193);
+  background-color: rgb(66, 66, 66);
+  border-radius: 5px;
+  padding: 0.33em;
+  margin: 0 0.3em;
+  cursor: pointer;
+}
+.cart--record .cart--record--buying button:hover {
+  filter: brightness(80%);
 }
 
 .wishlist--container .page--header:before {
@@ -64,34 +77,21 @@
 }
 
 .cart--record--name {
-  font-size: 0.8em;
+  letter-spacing: 1px;
+  font-size: 1em;
   max-width: 90%;
 }
 
 .cart--record--artist {
+  letter-spacing: 1px;
   font-weight: 300;
-  font-size: 0.6em;
+  font-size: 0.7em;
 }
 
 .cart--total--price {
   display: flex;
   justify-content: space-between;
   margin-top: auto;
-}
-
-.cart--record--buying button {
-  height: 50%;
-  align-self: center;
-  border: 1px solid rgba(14, 14, 40, 0.193);
-  background-color: rgb(66, 66, 66);
-  border-radius: 3px;
-  padding: 0.31em;
-  margin-left: auto;
-  scale: 0.9;
-  cursor: pointer;
-}
-.cart--record--buying button:hover {
-  background-color: rgb(55, 55, 55);
 }
 
 .cart--page--container {
@@ -101,8 +101,9 @@
 }
 
 .cart--summary {
+  margin-top: 1em;
   font-size: 0.8em;
-  width: 95%;
+  width: 90%;
   min-height: 20vh;
   border-left: 1px solid lightgrey;
   border-right: 1px solid lightgrey;
@@ -127,8 +128,8 @@
   font-family: "Inter";
   cursor: pointer;
   font-weight: bold;
-  height: 1.6em;
-  font-size: 1.1em;
+  height: 3em;
+  font-size: 1.2em;
   padding: 0 1em;
   align-self: flex-end;
 }
@@ -144,16 +145,6 @@
 
 .cart--quantity {
   padding: 0 1em;
-}
-
-.cart--record--buying {
-  display: flex;
-  width: 100%;
-  justify-content: space-evenly;
-  margin-top: auto;
-  padding-left: 1em;
-  margin-bottom: 1em;
-  font-size: 0.9em;
 }
 
 .cart {
@@ -175,30 +166,15 @@
   margin: 0 auto;
 }
 
-.cart--page {
-  height: 100%;
-}
-
 .checkout--button {
   font-sizE: 0.6em;
 }
 
 @media (min-width: 768px) {
-  .checkout--button {
-    font-sizE: 0.7em;
-  }
-  .cart--record--buying button {
-    font-size: 1em;
-    scale: 1.2;
-    margin: 0 0.8em;
-  }
   .cart--page--container {
     width: 100%;
-    font-size: 0.45em;
-    margin-left: 1em;
+    font-size: 1em;
   }
-}
-@media (min-width: 875px) {
   .wishlist--container .page--header:before {
     left: 2em;
     width: 160px;
@@ -207,45 +183,81 @@
     left: 1.3em;
     width: 90px;
   }
+  .cart--record {
+    padding: 0.5em;
+    max-height: 18vh;
+  }
+  .cart--record img {
+    margin-right: -0.7em;
+  }
+  .cart--record .cart--record--buying {
+    font-size: 0.8em;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-left: 0.5em;
+  }
+  .cart--record .cart--record--buying button {
+    padding: 0.33em;
+    margin: 0 1em;
+    cursor: pointer;
+  }
+  .cart--record .cart--record--buying button:hover {
+    filter: brightness(80%);
+  }
+  .cart--summary {
+    font-size: 0.5em;
+  }
+  .checkout--button {
+    font-sizE: 0.7em;
+  }
 }
 @media (min-width: 1000px) {
   .cart--page--container {
     width: 100%;
     flex-direction: row;
     margin-left: 0em;
-    font-size: 0.9em;
+    font-size: 0.7em;
+  }
+  .cart--items--container {
+    margin-right: 2em;
+    height: 90%;
+    width: 80%;
+  }
+  .cart--items--container .cart--record {
+    padding: 0.5em;
+    height: 16vh;
+    font-size: 1em;
+    min-height: 13vh;
+  }
+  .cart--items--container .cart--record img {
+    margin-right: -0.7em;
+    max-height: 20vh;
   }
   .cart--items {
     overflow-x: hidden;
-    width: 130%;
-    margin-left: -4em;
+  }
+  .cart--record--artist, .cart--record--name {
+    margin-left: 5%;
   }
   .cart--record--buying {
-    margin-left: 0.3em;
+    padding-left: 4em;
     margin-bottom: 1em;
-    font-size: 0.7em;
+    margin-left: 1em;
+    font-size: 1em;
   }
   .cart--record--buying button {
-    font-size: 0.26em;
+    font-size: 0.9em;
   }
   .cart--record--buying .cart--record--price, .cart--record--buying .cart--quantity {
     font-size: 0.7em;
     margin-top: 1em;
     align-self: center;
   }
-  .cart--record--buying {
-    font-size: 1.2em;
-    padding-lefT: 0.2em;
-    padding-bottom: 1em;
-  }
-  .cart--record--name {
-    font-size: 1em;
-  }
-  .cart--items {
-    padding-left: 4em;
-  }
   .cart--summary {
-    font-size: 0.5em;
+    margin-left: 1em;
+    margin-right: -2em;
     width: 50%;
   }
 }
@@ -254,19 +266,15 @@
     width: 110%;
     flex-direction: row;
     margin-left: -2em;
-    font-size: 1em;
+    font-size: 0.9em;
   }
   .cart--page--container .cart--items img {
     height: 130%;
     margin-top: -0.75em;
     margin-left: -0.7em;
   }
-  .cart--items {
-    width: 130%;
-    margin-left: -4em;
-  }
   .cart--record--buying {
-    margin-left: 0.3em;
+    margin-left: 1em;
     margin-bottom: 1em;
     font-size: 0.8em;
   }
@@ -276,9 +284,6 @@
   .cart--record--buying .cart--record--price, .cart--record--buying .cart--quantity {
     font-size: 1em;
     margin-top: 1em;
-  }
-  .cart--record--name {
-    margin-top: -0.6em;
   }
   .cart--page {
     padding: 2em;
@@ -351,6 +356,7 @@
   width: 100%;
   flex-wrap: nowrap;
   overflow-x: scroll;
+  overflow-y: hidden;
   font-size: 1.1em;
   padding: 0.5em;
   padding-bottom: 0;
@@ -1036,7 +1042,7 @@ nav h1 {
 nav {
   width: 100%;
   display: flex;
-  font-size: 0.5em;
+  font-size: 0.4em;
   margin: 0;
   background-color: rgb(66, 66, 66);
   color: white;
@@ -1061,7 +1067,7 @@ li {
   text-decoration: none;
   letter-spacing: 1px;
   font-size: 1.5em;
-  padding: 1.9em 0.5em;
+  padding: 2.2em 0.5em;
   margin: 0;
 }
 .nav--item:hover {
@@ -1090,7 +1096,8 @@ li {
 .cart--container {
   align-self: flex-end;
   position: relative;
-  margin-right: 1em;
+  margin-left: -3em;
+  margin-right: 0.2em;
 }
 
 .counter {
@@ -1172,7 +1179,50 @@ li {
   displaY: flex;
 }
 
+.auth--btn {
+  height: 50%;
+  align-self: center;
+  background-color: rgb(66, 66, 66);
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-size: 0.8em;
+  width: 10em;
+  height: 3em;
+  font-family: "Inter";
+  cursor: pointer;
+  font-weight: bold;
+  font-sizE: 0.9em;
+  width: 6em;
+  height: 4em;
+  margin: 0 1em;
+}
+.auth--btn:hover {
+  filter: brightness(80%);
+}
+
 @media (min-width: 768px) {
+  .auth--btn {
+    height: 50%;
+    align-self: center;
+    background-color: rgb(66, 66, 66);
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-size: 0.8em;
+    width: 10em;
+    height: 3em;
+    font-family: "Inter";
+    cursor: pointer;
+    font-weight: bold;
+    font-sizE: 0.89em;
+    width: 6em;
+    height: 2em;
+    margin: 0 1em;
+  }
+  .auth--btn:hover {
+    filter: brightness(80%);
+  }
   ul {
     width: 100%;
   }
@@ -1181,7 +1231,7 @@ li {
     margin-bottom: 2em;
   }
   .nav--item {
-    padding: 1.2em 1em;
+    padding: 1.5em 1em;
     font-size: 1em;
     margin-left: 2em;
   }

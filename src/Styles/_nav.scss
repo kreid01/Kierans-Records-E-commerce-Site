@@ -9,7 +9,7 @@ nav h1 {
 nav {
     width: 100%;
     display: flex;
-    font-size:0.5em;
+    font-size:0.4em;
     margin:0;
     background-color:rgb(66, 66, 66);
     color:white;
@@ -39,7 +39,7 @@ li {
         color:white;
     }
     font-size: 1.5em;
-    padding:1.9em 0.5em;
+    padding:2.2em 0.5em;
     margin:0;
 }
 .nav--buttons {
@@ -58,7 +58,8 @@ li {
 .cart--container {
     align-self: flex-end;
     position: relative;
-    margin-right: 1em;
+    margin-left: -3em;
+    margin-right: 0.2em;
 }
 .counter {
     background-color: rgb(255, 220, 220);
@@ -134,7 +135,22 @@ li {
     margin: 1em 1em 0 1.5em;
     displaY:flex;
 }
+
+.auth--btn {
+    @include button;
+    font-sizE:0.9em;
+    width:6em;
+    height:4em;
+    margin: 0 1em;
+}
 @media (min-width: 768px) {
+    .auth--btn {
+        @include button;
+        font-sizE:0.89em;
+        width:6em;
+        height:2em;
+        margin: 0 1em;
+    }
     ul {
         width:100%;
     }
@@ -143,7 +159,7 @@ li {
         margin-bottom: 2em;
     }
     .nav--item {
-        padding:  1.2em 1em;
+        padding:  1.5em 1em;
         font-size: 1em;
         margin-left: 2em
     }
