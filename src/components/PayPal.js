@@ -1,23 +1,10 @@
+/* eslint-disable array-callback-return */
 import React from 'react';
 
 export default function PayPal(props) {
     
+    const recordData = props.recordData
     const paypal = React.useRef()
-
-    let cartWithUniqeIds = []
-
-    console.log(props.cartDataFromAPI.cartContents)
-
-    props.cartDataFromAPI.cartContents.map(record => {
-            props.recordData.map((rec, i) => {
-                if(rec.name === record) {
-                    cartWithUniqeIds.push(rec)                                
-                    props.recordData.splice(i, 1)
-                    console.log(cartWithUniqeIds)
-                }
-            })
-    })
-    
 
     const updateDatabase = () => props.cartWithUniqeIds.map(record => {
 
@@ -56,14 +43,24 @@ export default function PayPal(props) {
                             amount: {
                                 value: props.totalPrice
                             },
+                        description: cartDescription,
+                        item_list: {
+                            items: [
+                                {
+                                name: "record"
+                                }
+                            ]
+                        }
                         }],
                 });
             },
             onApprove: async (data, action) => {
                 const order = await action.order.capture()
-                updateDatabase()
+                updateDatabase() 
+                props.goToCheckout()
+                props.emptyCartOnSuccessfulPayment()
+                props.goToCheckout()
                 console.log(order)
-               (props.goToCheckout)
             },
             onError : (err) => {
                 console.log(err)

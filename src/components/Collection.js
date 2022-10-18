@@ -3,6 +3,9 @@ import { Link  } from 'react-router-dom'
 
 export default function Collection(props) {
        
+    if(props.collection.length > 1) {
+
+
         const mappedData = props.collection.map((record, i) => {
         let id = 0
 
@@ -45,4 +48,4 @@ export default function Collection(props) {
         </main>
 
     )
-}
+}}
