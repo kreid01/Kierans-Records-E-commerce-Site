@@ -16,6 +16,9 @@ builder.Services.Configure<MongoDBSettings>(
     );
 
 //Dependencey Injection for Services
+builder.Services.AddSingleton<ICartRepository, CartRepository>();
+builder.Services.AddSingleton<ICustomerRepository, CustomerRepository>();
+builder.Services.AddSingleton<IOrderRepository, OrderRepository>();
 builder.Services.AddSingleton<IRecordRepository, RecordRepository>();
 builder.Services.AddTransient<IRecordFilterService, RecordFilterService>();
 

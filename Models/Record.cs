@@ -51,6 +51,9 @@ namespace RecordShop.Models
         public decimal price { get; set; }
 
         [BsonElement("isAvailable")]
-        public bool isAvailable { get; set; }
+        public bool? isAvailable { get; set; } = true;
+
+        [BsonElement("isReservedInCart")]
+        public bool? isReservedInCart { get; set; } = false;
     }
 }

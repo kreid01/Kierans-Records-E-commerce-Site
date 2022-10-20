@@ -12,7 +12,7 @@ namespace RecordShop.Controllers
     {
         private readonly IRecordRepository _recordRepository;
         private readonly IRecordFilterService _filterService;
-        public RecordController(IRecordRepository recordRepository, IRecordFilterService recordFilter)
+        public RecordController(IRecordRepository recordRepository, ICartRepository cartRepository, IRecordFilterService recordFilter)
         {
             _recordRepository = recordRepository;
             _filterService = recordFilter;
@@ -28,10 +28,10 @@ namespace RecordShop.Controllers
         [HttpGet]
         [Route("records/all")]
         public async Task<IActionResult> Get()
-        {        
+        {
             var records = await _recordRepository.GetAllAsync();
 
-            //await _filterService.MigrateData();
+            await _filterService.MigrateData();
             foreach (var record in records)
             {
                 record.quantity = await _filterService.RecordNameCount(record.name);
@@ -80,7 +80,7 @@ namespace RecordShop.Controllers
 
             return NoContent();
         }
-
+           
         [HttpDelete]
         [Route("records")]
         public async Task<IActionResult> Delete(string id)
@@ -95,5 +95,6 @@ namespace RecordShop.Controllers
 
             return NoContent();
         }
+  
     }
 }
