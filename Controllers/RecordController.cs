@@ -1,4 +1,5 @@
 ﻿using DnsClient.Protocol;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RecordShop.Models;
 using RecordShop.Services;
