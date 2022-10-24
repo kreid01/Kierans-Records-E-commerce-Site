@@ -64,7 +64,6 @@ builder.Services.AddAuthorization(o =>
 });
 
 //Dependencey Injection for Services
-builder.Services.AddSingleton<ICartRepository, CartRepository>();
 builder.Services.AddSingleton<ICustomerRepository, CustomerRepository>();
 builder.Services.AddSingleton<IOrderRepository, OrderRepository>();
 builder.Services.AddSingleton<IRecordRepository, RecordRepository>();

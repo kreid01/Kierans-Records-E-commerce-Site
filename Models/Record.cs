@@ -14,8 +14,12 @@ namespace RecordShop.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string? _id { get; set; }
 
-        [BsonElement]
-        public int? StockNumber { get; set; }
+        [BsonElement("stockNumber")]
+        public string? StockNumber { get; set; }
+
+        [BsonElement("format")]
+        [Required]
+        public string Format { get; set; }
 
         [BsonElement("name")]
         [Required]

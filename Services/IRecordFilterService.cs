@@ -8,5 +8,8 @@ namespace RecordShop.Services
 
         Task MigrateData();
 
+        Task AddStockId();
+
+        Task<int> RecordFormatCount(string value);
        }
 }
