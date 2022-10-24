@@ -14,5 +14,6 @@ namespace RecordShop.Store
 
         Task DeleteCustomerAsync(string id);
 
+
     }
 }

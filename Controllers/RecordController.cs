@@ -13,7 +13,7 @@ namespace RecordShop.Controllers
     {
         private readonly IRecordRepository _recordRepository;
         private readonly IRecordFilterService _filterService;
-        public RecordController(IRecordRepository recordRepository, ICartRepository cartRepository, IRecordFilterService recordFilter)
+        public RecordController(IRecordRepository recordRepository, IRecordFilterService recordFilter)
         {
             _recordRepository = recordRepository;
             _filterService = recordFilter;
@@ -32,12 +32,14 @@ namespace RecordShop.Controllers
         {
             var records = await _recordRepository.GetAllAsync();
 
-            await _filterService.MigrateData();
+            //await _filterService.AddStockId();
             foreach (var record in records)
             {
                 record.quantity = await _filterService.RecordNameCount(record.name);
             }
             return Ok(records);
+
+
         }
 
         [HttpGet]
@@ -64,6 +66,15 @@ namespace RecordShop.Controllers
         public async Task<IActionResult> Post(Record newRecord)
         {
             await _recordRepository.CreateNewRecordAsync(newRecord);
+
+            var format = newRecord.Format;
+
+            var count = await _filterService.RecordFormatCount(format);
+
+            newRecord.StockNumber = $"{newRecord.Format}{count}";
+
+            await _recordRepository.UpdateRecordAsync(newRecord);
+
             return CreatedAtAction(nameof(Get), new { id = newRecord._id }, newRecord);
         }
 

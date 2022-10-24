@@ -5,7 +5,6 @@ namespace RecordShop.Models
 {
     public class Order
     {
-        [BsonId]
         [BsonElement("Id")]
         [Required]
         public string Id { get; set; }

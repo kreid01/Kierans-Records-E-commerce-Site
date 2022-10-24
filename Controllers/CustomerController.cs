@@ -18,7 +18,6 @@ namespace RecordShop.Controllers
         }
         
         [HttpGet]
-        [Authorize]
         [Route("customer")]
         
         public async Task<IActionResult> Get()
@@ -28,7 +27,6 @@ namespace RecordShop.Controllers
         }
         
         [HttpGet]
-        [Authorize]
         [Route("customer/{id}")]
         public async Task<IActionResult> GetCustomerById(string id)
         {
@@ -37,7 +35,6 @@ namespace RecordShop.Controllers
         }
 
         [HttpPut]
-        [Authorize]
         [Route("customer")]
         public async Task<IActionResult> Put(Customer updateCustomer)
         {
@@ -53,7 +50,6 @@ namespace RecordShop.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         [Route("customer")]
         public async Task<IActionResult> Post(Customer newCustomer)
         {
@@ -64,7 +60,6 @@ namespace RecordShop.Controllers
         }
 
         [HttpDelete]
-        [Authorize]
         [Route("customer")]
         public async Task<IActionResult> Delete(string id)
         {

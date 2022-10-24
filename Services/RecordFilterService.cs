@@ -33,6 +33,28 @@ namespace RecordShop.Services
                 await _recordRepository.UpdateRecordAsync(record);
             }
         }
-           
+
+        public async Task AddStockId()
+        {
+            var records = await _recordRepository.GetAllAsync();
+
+            int index = 1;
+            foreach (var record in records)
+            {
+                record.StockNumber = $"LP{index}";
+                index++;
+                await _recordRepository.UpdateRecordAsync(record);
+            }
+
+
+        }
+        public async Task<int> RecordFormatCount(string value)
+        {
+            var result = await _recordRepository.GetAllAsync();
+
+            return result.Where(r => r.Format == value).Count();
+
+        }
+
     }
 }
