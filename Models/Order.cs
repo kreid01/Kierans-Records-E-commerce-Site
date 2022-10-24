@@ -10,8 +10,8 @@ namespace RecordShop.Models
         [Required]
         public string Id { get; set; }
 
-        [BsonElement("CustomerId")]
-        public string? CustomerId { get; set; }
+        [BsonElement("CustomerLinkToken")]
+        public string? CustomerLinkToken  { get; set; }
 
         [BsonElement("OrderContents")]
         [Required]

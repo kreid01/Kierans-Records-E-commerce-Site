@@ -24,9 +24,9 @@ namespace RecordShop.Store
             {
                 return await _ordersCollection.Find(_ => _.Id == id).FirstOrDefaultAsync();
             }
-            public async Task<List<Order>> GetAllOrdersByIdAsync(string CustomerId)
+            public async Task<List<Order>> GetAllOrdersByIdAsync(string CustomerLinkToken)
             {
-                var result = await _ordersCollection.Find(_ =>_.CustomerId == CustomerId).ToListAsync();
+                var result = await _ordersCollection.Find(_ =>_.CustomerLinkToken == CustomerLinkToken).ToListAsync();
 
                 return result;
             }

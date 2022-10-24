@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RecordShop.Models;
 using RecordShop.Store;
 
@@ -15,15 +16,19 @@ namespace RecordShop.Controllers
         {
             _customerRepository = customerRepository;
         }
+        
         [HttpGet]
+        [Authorize]
         [Route("customer")]
+        
         public async Task<IActionResult> Get()
         {
             var customer = await _customerRepository.GetCustomerAsync();
             return Ok(customer);
         }
-
+        
         [HttpGet]
+        [Authorize]
         [Route("customer/{id}")]
         public async Task<IActionResult> GetCustomerById(string id)
         {
@@ -32,6 +37,7 @@ namespace RecordShop.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         [Route("customer")]
         public async Task<IActionResult> Put(Customer updateCustomer)
         {
@@ -47,6 +53,7 @@ namespace RecordShop.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [Route("customer")]
         public async Task<IActionResult> Post(Customer newCustomer)
         {
@@ -57,6 +64,7 @@ namespace RecordShop.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
         [Route("customer")]
         public async Task<IActionResult> Delete(string id)
         {
