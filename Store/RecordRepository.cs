@@ -29,9 +29,9 @@ namespace RecordShop.Store
             return result;
         }
 
-        public async Task<Record> GetByIdAsync(string id)
+        public async Task<Record> GetByStockNumberAsync(string stockNumber)
         {
-            return await _recordCollection.Find(_ => _._id == id).FirstOrDefaultAsync();
+            return await _recordCollection.Find(_ => _.stockNumber == stockNumber).FirstOrDefaultAsync();
         }
 
         public async Task<Record> GetByNameAsync(string name)

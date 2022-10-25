@@ -41,18 +41,32 @@ namespace RecordShop.Services
             int index = 1;
             foreach (var record in records)
             {
-                record.StockNumber = $"LP{index}";
+                record.stockNumber = $"LP{index}";
                 index++;
                 await _recordRepository.UpdateRecordAsync(record);
             }
 
 
         }
+
+        public async Task AddFormat()
+        {
+            var records = await _recordRepository.GetAllAsync();
+
+            foreach (var record in records)
+            {
+                record.format = "LP";
+                await _recordRepository.UpdateRecordAsync(record);
+            }
+
+
+        }
+
         public async Task<int> RecordFormatCount(string value)
         {
             var result = await _recordRepository.GetAllAsync();
 
-            return result.Where(r => r.Format == value).Count();
+            return result.Where(r => r.format == value).Count();
 
         }
 
