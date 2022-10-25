@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using RecordShop.Models;
 using RecordShop.Services;
 using RecordShop.Store;
+using System.Net.WebSockets;
+using System.Security.Cryptography.X509Certificates;
 
 namespace RecordShop.Controllers
 {
@@ -26,6 +28,7 @@ namespace RecordShop.Controllers
             var record = await _recordRepository.GetAllPagedAsync(recordParameters);
             return Ok(record);
         }
+        
         [HttpGet]
         [Route("records/all")]
         public async Task<IActionResult> Get()
@@ -39,7 +42,15 @@ namespace RecordShop.Controllers
                 record.quantity = await _filterService.RecordNameCount(record.name);
             }
             return Ok(records);
+        }
 
+        [HttpGet]
+        [Route("records/genres")]
+        public async Task<IActionResult> GetByGenres(string genre)
+        {
+            var records = await _recordRepository.GetByGenre(genre);
+
+            return Ok(records); 
 
         }
 

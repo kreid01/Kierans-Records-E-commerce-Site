@@ -16,7 +16,7 @@ namespace RecordShop.Store
         {
             var result = await _recordCollection
                 .Find(_ => true)
-                .Skip((recordParameters.PageNumber -1) * recordParameters.PageSize)
+                .Skip((recordParameters.PageNumber - 1) * recordParameters.PageSize)
                 .Limit(recordParameters.PageSize)
                 .ToListAsync();
 
@@ -25,13 +25,32 @@ namespace RecordShop.Store
         public async Task<List<Record>> GetAllAsync()
         {
             var result = await _recordCollection.Find(_ => true).ToListAsync();
-            
+
             return result;
         }
 
         public async Task<Record> GetByStockNumberAsync(string stockNumber)
         {
             return await _recordCollection.Find(_ => _.stockNumber == stockNumber).FirstOrDefaultAsync();
+        }
+
+        public async Task<List<Record>> GetByGenre(string genreToFind)
+        {
+            var records = await _recordCollection.Find(_ => true).ToListAsync();
+
+            var recordsWithGenre = new List<Record>();
+
+            foreach(var record in records)
+            {
+                foreach(var genre in record.genres)
+                {
+                    if (genre.ToLower().Contains(genreToFind.ToLower()))
+                    {
+                        recordsWithGenre.Add(record);
+                    }
+                }
+            }
+            return recordsWithGenre;
         }
 
         public async Task<Record> GetByNameAsync(string name)

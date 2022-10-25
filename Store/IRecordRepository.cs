@@ -10,11 +10,14 @@ namespace RecordShop.Store
 
         Task <Record> GetByStockNumberAsync(string stockNumber);
 
+        Task<List<Record>> GetByGenre(string genre);
+
         Task <Record> GetByNameAsync(string name);
         Task CreateNewRecordAsync(Record newRecord);
 
         Task UpdateRecordAsync(Record recordToUpdate);
 
         Task DeleteRecordAsync(string id);
+
     }   
 }

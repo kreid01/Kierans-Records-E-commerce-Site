@@ -25,7 +25,8 @@ namespace RecordShop.Controllers
             var customer = await _customerRepository.GetCustomerAsync();
             return Ok(customer);
         }
-        
+
+            
         [HttpGet]
         [Route("customer/{id}")]
         public async Task<IActionResult> GetCustomerById(string id)
