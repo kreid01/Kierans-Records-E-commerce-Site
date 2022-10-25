@@ -15,11 +15,11 @@ namespace RecordShop.Models
         public string? _id { get; set; }
 
         [BsonElement("stockNumber")]
-        public string? StockNumber { get; set; }
+        public string? stockNumber { get; set; }
 
         [BsonElement("format")]
         [Required]
-        public string Format { get; set; }
+        public string format { get; set; }
 
         [BsonElement("name")]
         [Required]

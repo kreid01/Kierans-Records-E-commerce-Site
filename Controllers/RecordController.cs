@@ -33,6 +33,7 @@ namespace RecordShop.Controllers
             var records = await _recordRepository.GetAllAsync();
 
             //await _filterService.AddStockId();
+            //await _filterService.AddFormat();
             foreach (var record in records)
             {
                 record.quantity = await _filterService.RecordNameCount(record.name);
@@ -43,10 +44,10 @@ namespace RecordShop.Controllers
         }
 
         [HttpGet]
-        [Route("record/{id}")]
-        public async Task<IActionResult> Get(string id)
+        [Route("record/{stockNumber}")]
+        public async Task<IActionResult> Get(string stockNumber)
         {
-            var record = await _recordRepository.GetByIdAsync(id);
+            var record = await _recordRepository.GetByStockNumberAsync(stockNumber);
             return Ok(record);
         }
 
@@ -65,15 +66,14 @@ namespace RecordShop.Controllers
         [Route("records")]
         public async Task<IActionResult> Post(Record newRecord)
         {
-            await _recordRepository.CreateNewRecordAsync(newRecord);
 
-            var format = newRecord.Format;
+            var format = newRecord.format;
 
-            var count = await _filterService.RecordFormatCount(format);
+            var count = await _filterService.RecordFormatCount(format) + 1;
 
-            newRecord.StockNumber = $"{newRecord.Format}{count}";
+            newRecord.stockNumber = $"{newRecord.format}{count}";
 
-            await _recordRepository.UpdateRecordAsync(newRecord);
+            await _recordRepository.CreateNewRecordAsync(newRecord);       
 
             return CreatedAtAction(nameof(Get), new { id = newRecord._id }, newRecord);
         }
@@ -82,7 +82,7 @@ namespace RecordShop.Controllers
         [Route("records")]
         public async Task<IActionResult> Put(Record updateRecord)
         {
-            Record record = await _recordRepository.GetByIdAsync(updateRecord._id);
+            Record record = await _recordRepository.GetByStockNumberAsync(updateRecord.stockNumber);
             if (record == null)
             {
                 return NotFound();
@@ -97,7 +97,7 @@ namespace RecordShop.Controllers
         [Route("records")]
         public async Task<IActionResult> Delete(string id)
         {
-            var record = await _recordRepository.GetByIdAsync(id);
+            var record = await _recordRepository.GetByStockNumberAsync(id);
             if (record ==null)
             {
                 return NotFound();

@@ -10,6 +10,8 @@ namespace RecordShop.Services
 
         Task AddStockId();
 
+        Task AddFormat();
+
         Task<int> RecordFormatCount(string value);
        }
 }

@@ -8,7 +8,7 @@ namespace RecordShop.Store
 
         Task<List<Record>> GetAllAsync();
 
-        Task <Record> GetByIdAsync(string id);
+        Task <Record> GetByStockNumberAsync(string stockNumber);
 
         Task <Record> GetByNameAsync(string name);
         Task CreateNewRecordAsync(Record newRecord);
