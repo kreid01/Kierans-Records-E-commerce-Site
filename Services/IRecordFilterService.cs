@@ -13,5 +13,9 @@ namespace RecordShop.Services
         Task AddFormat();
 
         Task<int> RecordFormatCount(string value);
+
+        Task<List<Record>> SortRecords(string value, List<Record> records);
+
+        Task<List<Record>> RemoveDuplicateRecords(List<Record> records);
        }
 }

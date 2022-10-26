@@ -3,6 +3,7 @@ using Microsoft.OpenApi.Extensions;
 using MongoDB.Driver;
 using RecordShop.Models;
 using RecordShop.Store;
+using System.Linq;
 
 namespace RecordShop.Services
 {
@@ -70,5 +71,53 @@ namespace RecordShop.Services
 
         }
 
+        public async Task<List<Record>> SortRecords(string method, List<Record> records)
+        {
+
+            if (method == "Price >")
+            {
+                records = records.OrderBy(r => r.price).ToList();
+            }
+
+            if (method == "Price <")
+            {
+                records = records.OrderByDescending(r => r.price).ToList();
+            }
+
+            if (method == "Release Year >")
+            {
+                records = records.OrderBy(r => r.releaseYear).ToList();
+            }
+
+            if (method == "Release Year <")
+            {
+                records = records.OrderByDescending(r => r.releaseYear).ToList();
+            }
+
+            if (method == "Record Name >")
+            {
+                records = records.OrderBy(r => r.name).ToList();
+            }
+
+            if (method == "Record Name >")
+            {
+                records = records.OrderByDescending(r => r.name).ToList();
+            }
+
+            return records;
+        }
+
+        public async Task<List<Record>> RemoveDuplicateRecords(List<Record> records)
+        {
+            var uniqueRecordList = new List<Record>();
+
+            foreach (var record in records)
+            {
+                uniqueRecordList.Where(r => r.name != record.name).ToList();
+               
+            }
+
+            return uniqueRecordList;
+        }
     }
 }

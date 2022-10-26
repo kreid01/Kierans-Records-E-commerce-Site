@@ -10,9 +10,10 @@ namespace RecordShop.Store
 
         Task <Record> GetByStockNumberAsync(string stockNumber);
 
-        Task<List<Record>> GetByGenre(string genre);
+        Task<List<Record>> GetByGenre(string genre, List<Record> records);
 
         Task <Record> GetByNameAsync(string name);
+        
         Task CreateNewRecordAsync(Record newRecord);
 
         Task UpdateRecordAsync(Record recordToUpdate);

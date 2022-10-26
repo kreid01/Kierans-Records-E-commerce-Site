@@ -44,16 +44,7 @@ namespace RecordShop.Controllers
             return Ok(records);
         }
 
-        [HttpGet]
-        [Route("records/genres")]
-        public async Task<IActionResult> GetByGenres(string genre)
-        {
-            var records = await _recordRepository.GetByGenre(genre);
-
-            return Ok(records); 
-
-        }
-
+    
         [HttpGet]
         [Route("record/{stockNumber}")]
         public async Task<IActionResult> Get(string stockNumber)
@@ -71,6 +62,46 @@ namespace RecordShop.Controllers
             record.quantity = await _filterService.RecordNameCount(name);
 
             return Ok(record);
+        }
+
+        [HttpGet]
+        [Route("records/sort")]
+        public async Task<IActionResult> GetRecordsSorted(string method, [FromQuery] RecordParameters recordParameters)
+        {
+            var records = await _recordRepository.GetAllAsync();
+
+            var sortedRecords = await _filterService.SortRecords(method, records);
+
+            return Ok(sortedRecords.Skip((recordParameters.PageNumber - 1) * recordParameters.PageSize).Take(recordParameters.PageSize).ToList());
+        }
+        
+        [HttpGet]
+        [Route("records/genres")]
+        public async Task<IActionResult> GetByGenres([FromQuery] RecordParameters recordParameters, string genre)
+        {
+            var records = await _recordRepository.GetAllAsync();
+
+            var removedDuplicateRecords = await _filterService.RemoveDuplicateRecords(records);
+
+            var sortedRecords = await _recordRepository.GetByGenre(genre, removedDuplicateRecords);
+
+            return Ok(sortedRecords.Skip((recordParameters.PageNumber - 1) * recordParameters.PageSize).Take(recordParameters.PageSize).ToList());
+
+        }
+
+        [HttpGet]
+        [Route("records/genres/sorted")]
+        public async Task<IActionResult> GetByGenresAndSort([FromQuery] RecordParameters recordParameters, string genre, string method)
+
+        {
+            var records = await _recordRepository.GetAllAsync();
+
+            records = await _filterService.SortRecords(method, records);
+
+            var FilteredRecords = await _recordRepository.GetByGenre(genre, records);
+            
+            return Ok(FilteredRecords.Skip((recordParameters.PageNumber - 1) * recordParameters.PageSize).Take(recordParameters.PageSize).ToList());
+
         }
 
         [HttpPost]

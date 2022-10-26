@@ -34,9 +34,8 @@ namespace RecordShop.Store
             return await _recordCollection.Find(_ => _.stockNumber == stockNumber).FirstOrDefaultAsync();
         }
 
-        public async Task<List<Record>> GetByGenre(string genreToFind)
+        public async Task<List<Record>> GetByGenre(string genreToFind, List<Record> records)
         {
-            var records = await _recordCollection.Find(_ => true).ToListAsync();
 
             var recordsWithGenre = new List<Record>();
 
@@ -44,7 +43,7 @@ namespace RecordShop.Store
             {
                 foreach(var genre in record.genres)
                 {
-                    if (genre.ToLower().Contains(genreToFind.ToLower()))
+                    if (genre.ToLower().Contains(genreToFind.ToLower()) && !recordsWithGenre.Contains(record))
                     {
                         recordsWithGenre.Add(record);
                     }
