@@ -74,32 +74,32 @@ namespace RecordShop.Services
         public async Task<List<Record>> SortRecords(string method, List<Record> records)
         {
 
-            if (method == "Price >")
+            if (method == "PriceUp")
             {
                 records = records.OrderBy(r => r.price).ToList();
             }
 
-            if (method == "Price <")
+            if (method == "PriceDown")
             {
                 records = records.OrderByDescending(r => r.price).ToList();
             }
 
-            if (method == "Release Year >")
+            if (method == "ReleaseYearUp")
             {
                 records = records.OrderBy(r => r.releaseYear).ToList();
             }
 
-            if (method == "Release Year <")
+            if (method == "ReleaseYearDown")
             {
                 records = records.OrderByDescending(r => r.releaseYear).ToList();
             }
 
-            if (method == "Record Name >")
+            if (method == "RecordNameUp")
             {
                 records = records.OrderBy(r => r.name).ToList();
             }
 
-            if (method == "Record Name <")
+            if (method == "RecordNameDown")
             {
                 records = records.OrderByDescending(r => r.name).ToList();
             }
