@@ -72,7 +72,10 @@ namespace RecordShop.Controllers
 
             var sortedRecords = await _filterService.SortRecords(method, records);
 
-            return Ok(sortedRecords.Skip((recordParameters.PageNumber - 1) * recordParameters.PageSize).Take(recordParameters.PageSize).ToList());
+            var uniqueSortedRecords = await _filterService.RemoveDuplicateRecords(sortedRecords);
+
+
+            return Ok(uniqueSortedRecords.Skip((recordParameters.PageNumber - 1) * recordParameters.PageSize).Take(recordParameters.PageSize).ToList());
         }
         
         [HttpGet]
@@ -81,11 +84,9 @@ namespace RecordShop.Controllers
         {
             var records = await _recordRepository.GetAllAsync();
 
-            var removedDuplicateRecords = await _filterService.RemoveDuplicateRecords(records);
+            var filteredRecords = await _recordRepository.GetByGenre(genre, records);
 
-            var sortedRecords = await _recordRepository.GetByGenre(genre, removedDuplicateRecords);
-
-            return Ok(sortedRecords.Skip((recordParameters.PageNumber - 1) * recordParameters.PageSize).Take(recordParameters.PageSize).ToList());
+            return Ok(filteredRecords.Skip((recordParameters.PageNumber - 1) * recordParameters.PageSize).Take(recordParameters.PageSize).ToList());
 
         }
 
@@ -98,9 +99,9 @@ namespace RecordShop.Controllers
 
             records = await _filterService.SortRecords(method, records);
 
-            var FilteredRecords = await _recordRepository.GetByGenre(genre, records);
-            
-            return Ok(FilteredRecords.Skip((recordParameters.PageNumber - 1) * recordParameters.PageSize).Take(recordParameters.PageSize).ToList());
+            var filteredRecords = await _recordRepository.GetByGenre(genre, records);
+                        
+            return Ok(filteredRecords.Skip((recordParameters.PageNumber - 1) * recordParameters.PageSize).Take(recordParameters.PageSize).ToList());
 
         }
 

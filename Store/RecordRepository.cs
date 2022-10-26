@@ -43,7 +43,7 @@ namespace RecordShop.Store
             {
                 foreach(var genre in record.genres)
                 {
-                    if (genre.ToLower().Contains(genreToFind.ToLower()) && !recordsWithGenre.Contains(record))
+                    if (genre.ToLower().Contains(genreToFind.ToLower()))
                     {
                         recordsWithGenre.Add(record);
                     }

@@ -99,7 +99,7 @@ namespace RecordShop.Services
                 records = records.OrderBy(r => r.name).ToList();
             }
 
-            if (method == "Record Name >")
+            if (method == "Record Name <")
             {
                 records = records.OrderByDescending(r => r.name).ToList();
             }
@@ -109,15 +109,10 @@ namespace RecordShop.Services
 
         public async Task<List<Record>> RemoveDuplicateRecords(List<Record> records)
         {
-            var uniqueRecordList = new List<Record>();
+            var uniqueRecords = records.GroupBy(x => x.name).Select(x => x.First()).ToList();
 
-            foreach (var record in records)
-            {
-                uniqueRecordList.Where(r => r.name != record.name).ToList();
-               
-            }
-
-            return uniqueRecordList;
+            return uniqueRecords;
         }
     }
 }
+
