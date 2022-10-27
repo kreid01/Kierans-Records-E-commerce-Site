@@ -40,6 +40,7 @@ namespace RecordShop.Services
             var records = await _recordRepository.GetAllAsync();
 
             int index = 1;
+            
             foreach (var record in records)
             {
                 record.stockNumber = $"LP{index}";
